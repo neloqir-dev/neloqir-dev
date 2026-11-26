@@ -3,18 +3,20 @@
 <head>
 <meta charset="utf-8">
 <!--
-README 用の画像のもと。?s= で出す部分をえらぶ(カンマ区切り)。
-  paper-main.png    : ?s=hero,services,works,strengths
-  paper-own.png     : ?s=own
-  paper-contact.png : ?s=contact
-画像どうしを重ねても方眼がつながるよう、高さは 30px の倍数にそろえている。
-方眼は 15px ずらしてあり、画像の上下のはしに線がこない(つなぎ目が見えない)。
+README 用の画像のもと。全体を1枚の紙として組み、?g= でえらんだ部分だけを切りだす。
+  readme-main.png    : ?g=main    (見出し〜進め方と強み)
+  readme-own.png     : ?g=own     (自社サービス)
+  readme-contact.png : ?g=contact (ご依頼・ご相談)
+1枚の紙から切りだすので、重ねると方眼がそのままつながる。
+各部分の高さは 7px の倍数にしてある。GitHub では幅 420 を 480 に広げて表示するため、
+7 の倍数なら表示の高さが整数になり、画像のあいだに細い線が出ない。
 -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Yomogi&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=block">
 <style>
-html,body{margin:0}
+html{margin:0;background:#EEF3F1;overflow:hidden}
+body{margin:0}
 body{width:420px;color:#1F2A5C;font-family:'Zen Kaku Gothic New',sans-serif;font-size:20px;line-height:1.75;background-color:#EEF3F1;background-image:linear-gradient(#D5E0E4 1px,transparent 1px),linear-gradient(90deg,#D5E0E4 1px,transparent 1px);background-size:30px 30px;background-position:0 15px}
-section{display:none;box-sizing:border-box;width:420px;padding:34px 18px 30px}
+section{display:block;box-sizing:border-box;width:420px;padding:34px 18px 30px}
 section.on{display:block}
 p,h1,h2,h3{margin:0;word-break:auto-phrase;text-wrap:balance}
 h2{font-size:30px;font-weight:900;line-height:1.3;margin-bottom:18px}
@@ -109,14 +111,19 @@ h2{font-size:30px;font-weight:900;line-height:1.3;margin-bottom:18px}
 </div>
 </section>
 <script>
-const shown=new URLSearchParams(location.search).get('s').split(',').map(id=>document.getElementById(id));
-shown.forEach(s=>s.classList.add('on'));
+const groups={main:['hero','services','works','strengths'],own:['own'],contact:['contact']};
+const pick=new URLSearchParams(location.search).get('g');
 document.fonts.ready.then(()=>{
-  const total=()=>shown.reduce((a,s)=>a+s.getBoundingClientRect().height,0);
-  const last=shown[shown.length-1];
-  const pad=(30-Math.ceil(total())%30)%30;
-  last.style.paddingBottom=(parseFloat(getComputedStyle(last).paddingBottom)+pad+(Math.ceil(total())-total()))+'px';
-  document.body.dataset.h=Math.round(total());
+  let offset=0;
+  for(const [name,ids] of Object.entries(groups)){
+    const els=ids.map(id=>document.getElementById(id));
+    const total=()=>els.reduce((a,s)=>a+s.getBoundingClientRect().height,0);
+    const last=els[els.length-1];
+    const want=Math.ceil(total()/7)*7;
+    last.style.paddingBottom=(parseFloat(getComputedStyle(last).paddingBottom)+want-total())+'px';
+    if(name===pick){document.body.style.marginTop=(-offset)+'px';document.body.dataset.h=want;}
+    offset+=want;
+  }
 });
 </script>
 </body>
