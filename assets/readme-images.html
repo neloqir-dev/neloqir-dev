@@ -2,22 +2,33 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
+<!--
+README 用の画像のもと。?s= で出す部分をえらぶ(カンマ区切り)。
+  sheet-main.png    : ?s=hero,services,works,strengths
+  sheet-own.png     : ?s=own
+  sheet-contact.png : ?s=contact
+画像どうしを重ねても方眼がつながるよう、高さは 30px の倍数にそろえている。
+-->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Yomogi&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=block">
 <style>
 html,body{margin:0}
-body{width:420px;color:#1F2A5C;font-family:'Zen Kaku Gothic New',sans-serif;font-size:20px;line-height:1.75}
-section{display:none;box-sizing:border-box;width:420px;padding:26px 18px 32px;background-color:#EEF3F1;background-image:linear-gradient(#D5E0E4 1px,transparent 1px),linear-gradient(90deg,#D5E0E4 1px,transparent 1px);background-size:30px 30px}
+body{width:420px;color:#1F2A5C;font-family:'Zen Kaku Gothic New',sans-serif;font-size:20px;line-height:1.75;background-color:#EEF3F1;background-image:linear-gradient(#D5E0E4 1px,transparent 1px),linear-gradient(90deg,#D5E0E4 1px,transparent 1px);background-size:30px 30px}
+section{display:none;box-sizing:border-box;width:420px;padding:34px 18px 30px}
 section.on{display:block}
-p,h1,h3{margin:0;word-break:auto-phrase;text-wrap:balance}
+p,h1,h2,h3{margin:0;word-break:auto-phrase;text-wrap:balance}
+h2{font-size:30px;font-weight:900;line-height:1.3;margin-bottom:18px}
+.note{font-weight:500;margin-top:18px}
 .dot{font-family:'DotGothic16',sans-serif}
 .box{background:#fff;border:2px solid #1F2A5C}
 .shadow{box-shadow:9px 9px 0 #1F2A5C;margin-right:9px}
+#hero{padding-top:26px}
 #hero h1{font-size:46px;font-weight:900;line-height:1.22;letter-spacing:-.02em;margin:14px 0 22px}
 #hero .lead{font-weight:500;margin-bottom:36px}
-.slip{padding:20px 16px 8px;display:grid;grid-template-columns:1fr 1fr;gap:0 14px;transform:rotate(1deg)}
-.slip .th{font-size:16px;font-weight:700;padding-bottom:8px;border-bottom:2px solid #1F2A5C}
-.slip p{padding:14px 0;border-bottom:1px dashed #9DB4C9;line-height:1.5}
-.slip p.last{border-bottom:0}
+.slip{padding:8px 18px;transform:rotate(1deg)}
+.slip p{line-height:1.5;white-space:nowrap}
+.pair{display:grid;grid-template-columns:66px 1fr;gap:8px 10px;align-items:center;padding:16px 0;border-bottom:1px dashed #9DB4C9}
+.pair:last-child{border-bottom:0}
+.slip .lab{font-size:13px;font-weight:700}
 .old{font-family:'Yomogi',cursive;font-size:18px;color:#4A5578;text-decoration:line-through;text-decoration-color:#C8322B;text-decoration-thickness:2px}
 .new{font-family:'DotGothic16',sans-serif;font-size:17px}
 .rows{padding:4px 18px}
@@ -27,19 +38,16 @@ p,h1,h3{margin:0;word-break:auto-phrase;text-wrap:balance}
 .cards{display:flex;flex-direction:column;gap:18px}
 .cards div{background:#1F2A5C;color:#fff;padding:22px 20px}
 .cards h3{font-size:24px;font-weight:700;line-height:1.5;margin-bottom:6px}
-#contact .box{padding:24px 18px 28px}
-#contact .mail{display:inline-block;margin-top:14px;padding:4px 4px;font-size:38px;font-weight:900;line-height:1.3;background-image:linear-gradient(transparent 62%,#F5E27A 62%)}
 .works{position:relative}
 .works table{width:100%;border-collapse:collapse;text-align:left}
 .works th{font-size:16px;font-weight:700;padding:12px 14px;border-bottom:2px solid #1F2A5C}
 .works td{font-family:'DotGothic16',sans-serif;font-size:18px;color:#4A5578;padding:34px 14px 40px}
 .works th+th,.works td+td{border-left:1px solid #9DB4C9}
 .stamp{position:absolute;right:98px;bottom:6px;width:92px;height:92px;box-sizing:border-box;border:4px solid #C8322B;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#C8322B;font-size:23px;font-weight:900;line-height:1;transform:rotate(-12deg)}
-.slip{display:block;padding:8px 18px}
-.slip p{padding:0;border:0;line-height:1.5;white-space:nowrap}
-.pair{display:grid;grid-template-columns:66px 1fr;gap:8px 10px;align-items:center;padding:16px 0;border-bottom:1px dashed #9DB4C9}
-.pair:last-child{border-bottom:0}
-.slip .lab{font-size:13px;font-weight:700}
+#own p{font-weight:500}
+#own .link{font-weight:700;text-decoration:underline;text-underline-offset:4px}
+#contact .box{padding:24px 18px 28px}
+#contact .mail{display:inline-block;margin-top:14px;padding:4px 4px;font-size:38px;font-weight:900;line-height:1.3;background-image:linear-gradient(transparent 62%,#F5E27A 62%)}
 </style>
 </head>
 <body>
@@ -55,6 +63,7 @@ p,h1,h3{margin:0;word-break:auto-phrase;text-wrap:balance}
 </section>
 
 <section id="services">
+<h2>対応できる仕事</h2>
 <div class="box rows">
 <div><h3>Webデータの収集・定期取得</h3><p>価格、在庫、求人などを決まった時間に集めます。</p></div>
 <div><h3>変動の通知</h3><p>値下げや在庫切れなどの変化を、LINE、メール、Slackでお知らせします。</p></div>
@@ -62,17 +71,11 @@ p,h1,h3{margin:0;word-break:auto-phrase;text-wrap:balance}
 <div><h3>スプレッドシートやExcel作業の自動化</h3><p>転記、集計、整形などの決まった作業を自動にします。</p></div>
 <div><h3>データの一覧画面・グラフ化</h3><p>集めたデータを、ひと目でわかる画面にします。</p></div>
 </div>
-</section>
-
-<section id="strengths">
-<div class="cards">
-<div><h3>ルールを守って集めます</h3><p>対象サイトの利用規約を確認します。公式の提供窓口(API)があれば、そちらを優先します。</p></div>
-<div><h3>運用費を抑えます</h3><p>常に動かし続けるサーバーを使わず、必要なときだけ動く構成にします。</p></div>
-<div><h3>納品後も対応します</h3><p>保守や改修のご依頼もお受けします。</p></div>
-</div>
+<p class="note">「これは頼めるのか」という段階のご相談も歓迎です。</p>
 </section>
 
 <section id="works">
+<h2>作品</h2>
 <div class="box works">
 <table>
 <tr><th>名前</th><th>何を解決するか</th><th>デモ</th></tr>
@@ -80,18 +83,40 @@ p,h1,h3{margin:0;word-break:auto-phrase;text-wrap:balance}
 </table>
 <div class="stamp">準備中</div>
 </div>
+<p class="note">公開できしだい、ここに追加します。</p>
+</section>
+
+<section id="strengths">
+<h2>進め方と強み</h2>
+<div class="cards">
+<div><h3>ルールを守って集めます</h3><p>対象サイトの利用規約を確認します。公式の提供窓口(API)があれば、そちらを優先します。</p></div>
+<div><h3>運用費を抑えます</h3><p>常に動かし続けるサーバーを使わず、必要なときだけ動く構成にします。</p></div>
+<div><h3>納品後も対応します</h3><p>保守や改修のご依頼もお受けします。</p></div>
+</div>
+</section>
+
+<section id="own">
+<h2>自社サービス</h2>
+<p>受託開発とは別に、自社サービスも開発しています。<br><span class="link">neloqir のページを見る</span></p>
 </section>
 
 <section id="contact">
+<h2>ご依頼・ご相談</h2>
 <div class="box shadow">
 <p style="font-weight:500">お困りの作業を、そのままの言葉でお知らせください。</p>
 <p class="mail">info@neloqir.com</p>
 </div>
 </section>
 <script>
-const s=document.getElementById(new URLSearchParams(location.search).get('s'));
-s.classList.add('on');
-document.fonts.ready.then(()=>{document.body.dataset.h=Math.ceil(s.getBoundingClientRect().height)});
+const shown=new URLSearchParams(location.search).get('s').split(',').map(id=>document.getElementById(id));
+shown.forEach(s=>s.classList.add('on'));
+document.fonts.ready.then(()=>{
+  const total=()=>shown.reduce((a,s)=>a+s.getBoundingClientRect().height,0);
+  const last=shown[shown.length-1];
+  const pad=(30-Math.ceil(total())%30)%30;
+  last.style.paddingBottom=(parseFloat(getComputedStyle(last).paddingBottom)+pad+(Math.ceil(total())-total()))+'px';
+  document.body.dataset.h=Math.round(total());
+});
 </script>
 </body>
 </html>
