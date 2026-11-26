@@ -4,15 +4,16 @@
 <meta charset="utf-8">
 <!--
 README 用の画像のもと。?s= で出す部分をえらぶ(カンマ区切り)。
-  sheet-main.png    : ?s=hero,services,works,strengths
-  sheet-own.png     : ?s=own
-  sheet-contact.png : ?s=contact
+  paper-main.png    : ?s=hero,services,works,strengths
+  paper-own.png     : ?s=own
+  paper-contact.png : ?s=contact
 画像どうしを重ねても方眼がつながるよう、高さは 30px の倍数にそろえている。
+方眼は 15px ずらしてあり、画像の上下のはしに線がこない(つなぎ目が見えない)。
 -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Yomogi&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=block">
 <style>
 html,body{margin:0}
-body{width:420px;color:#1F2A5C;font-family:'Zen Kaku Gothic New',sans-serif;font-size:20px;line-height:1.75;background-color:#EEF3F1;background-image:linear-gradient(#D5E0E4 1px,transparent 1px),linear-gradient(90deg,#D5E0E4 1px,transparent 1px);background-size:30px 30px}
+body{width:420px;color:#1F2A5C;font-family:'Zen Kaku Gothic New',sans-serif;font-size:20px;line-height:1.75;background-color:#EEF3F1;background-image:linear-gradient(#D5E0E4 1px,transparent 1px),linear-gradient(90deg,#D5E0E4 1px,transparent 1px);background-size:30px 30px;background-position:0 15px}
 section{display:none;box-sizing:border-box;width:420px;padding:34px 18px 30px}
 section.on{display:block}
 p,h1,h2,h3{margin:0;word-break:auto-phrase;text-wrap:balance}
