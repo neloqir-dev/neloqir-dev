@@ -36,4 +36,4 @@
 
 お困りの作業を、そのままの言葉でお知らせください。
 
-連絡先:[連絡先を記入]
+連絡先:[info@neloqir.com](mailto:info@neloqir.com)
